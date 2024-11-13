@@ -1,4 +1,4 @@
-<button?php
+<?php
   require_once('config.php');
 ?>
 
@@ -30,20 +30,14 @@
                 <p class="text-center">Ton suivi en 1 clic</p>
                 <form method="POST">
                   <div class="mb-3">
-                    <label for="mail" class="form-label">Mail</label>
-                    <input type="email" name="mail "class="form-control" id="mail" aria-describedby="emailHelp">
+                    <label for="mail" class="form-label">Adresse Mail</label>
+                    <input type="email" name="mail" class="form-control" id="mail" aria-describedby="emailHelp">
                   </div>
                   <div class="mb-4">
                     <label for="password" class="form-label">Mot de passe</label>
                     <input type="password" name="password" class="form-control" id="password">
                   </div>
                   <div class="d-flex align-items-center justify-content-between mb-4">
-                    <div class="form-check">
-                      <input class="form-check-input primary" type="checkbox" value="" id="flexCheckChecked" checked>
-                      <label class="form-check-label text-dark" for="flexCheckChecked">
-                        Remeber this Device
-                      </label>
-                    </div>
                     <a class="text-primary fw-bold" href="./index.html">Mot de passe oublié</a>
                   </div>
                   <button type="submit" name="login" class="btn btn-primary w-100 py-8 fs-4 mb-4">Connexion</button>
@@ -68,9 +62,8 @@
 
 <?php
   if(isset($_POST["login"])){
-    $mail = $_POST["mail"];
-    $password = $_POST["password"];
-    login($mail,$password);
+    var_dump($_POST["mail"]);
+    login($_POST["mail"],$_POST["password"]);
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);

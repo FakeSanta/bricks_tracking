@@ -31,11 +31,18 @@ function login($mail, $password) {
     $statement->execute(array('mail' => $mail));
     $row = $statement->fetch(PDO::FETCH_ASSOC);
 
-    if($row && password_verify($password, $row['password'])){
-      header('Location: index.php');
-    }else{
-      header('Location: indexx.php');
-    }
-    exit();  // Important pour éviter l'exécution du code après la redirection
+    if ($row) {
+        var_dump($row['password']); // Affiche le mot de passe haché stocké
+        var_dump($password);        // Affiche le mot de passe saisi par l'utilisateur
+        var_dump(password_verify($password, $row['password'])); // Affiche le résultat de la vérification
 
-}
+        if (password_verify($password, $row['password'])) {
+            header('Location: index.php');
+        } else {
+            //header('Location: indexx.php');
+        }
+    } else {
+        echo "Utilisateur non trouvé.";
+    }
+    exit();
+  }
